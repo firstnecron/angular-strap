@@ -135,6 +135,10 @@ angular.module('mgcrea.ngStrap.affix', ['mgcrea.ngStrap.helpers.dimensions', 'mg
         };
 
         $affix.$onResize = function () {
+          if (element.hasClass('affix')) {
+            element.removeClass(reset);
+            affixed = null;
+          }
           $affix.$parseOffsets();
           $affix.checkPosition();
         };
@@ -189,6 +193,8 @@ angular.module('mgcrea.ngStrap.affix', ['mgcrea.ngStrap.helpers.dimensions', 'mg
 
           if (scrollTop <= offsetTop) {
             return 'top';
+          } else if (scrollTop === offsetTop) {
+            return 'middle';
           } else if (_unpin !== null) {
             return scrollTop + _unpin <= position.top ? 'middle' : 'bottom';
           } else if (offsetBottom !== null && (position.top + elementHeight + initialAffixTop >= scrollHeight - offsetBottom)) {
