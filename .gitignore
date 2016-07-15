@@ -11,5 +11,5 @@ node_modules/
 /docs/1.0
 /test/coverage/
 !.gitignore
-dist/
+!dist/
 *.nupkg
